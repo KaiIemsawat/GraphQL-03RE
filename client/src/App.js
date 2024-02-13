@@ -1,6 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import Header from "./components/Header";
 import Clients from "./components/Clients";
+import Project from "./components/Project";
 import AddClientModal from "./components/AddClientModal";
 
 const cache = new InMemoryCache({
@@ -34,6 +35,7 @@ function App() {
                 <Header />
                 <div className="container">
                     <AddClientModal />
+                    <Project />
                     <Clients />
                 </div>
             </ApolloProvider>
