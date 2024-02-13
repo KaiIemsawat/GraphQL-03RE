@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "./Spinner";
 import ProjectCard from "./ProjectCard";
 
-const Project = () => {
+const Projects = () => {
     const { loading, error, data } = useQuery(GET_PROJECTS);
 
     if (loading) {
@@ -27,4 +27,4 @@ const Project = () => {
         </>
     );
 };
-export default Project;
+export default Projects;
