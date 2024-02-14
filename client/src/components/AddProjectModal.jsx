@@ -138,13 +138,6 @@ const AddProjectModal = () => {
                                                 </option>
                                             </select>
                                         </div>
-                                        <button
-                                            className="btn btn-primary"
-                                            type="submit"
-                                            data-bs-dismiss="modal"
-                                        >
-                                            Submit
-                                        </button>
 
                                         <div className="mb-3">
                                             <label className="form-label">
@@ -171,6 +164,13 @@ const AddProjectModal = () => {
                                                 ))}
                                             </select>
                                         </div>
+                                        <button
+                                            className="btn btn-primary"
+                                            type="submit"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Submit
+                                        </button>
                                     </form>
                                 </div>
                             </div>

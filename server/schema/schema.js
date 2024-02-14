@@ -99,8 +99,25 @@ const mutation = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLNonNull(GraphQLID) },
             },
-            resolve(parent, args) {
-                return Client.findByIdAndDelete(args.id);
+            async resolve(parent, args) {
+                try {
+                    // Find and delete associated projects
+                    const projects = await Project.find({ clientId: args.id });
+
+                    // Use Promise.all to wait for all project deletions to complete
+                    await Promise.all(
+                        projects.map((project) => project.deleteOne())
+                    );
+
+                    // Delete the client
+                    return Client.findByIdAndDelete(args.id);
+                } catch (error) {
+                    console.error(
+                        "Error deleting client and associated projects:",
+                        error
+                    );
+                    throw error;
+                }
             },
         },
 
@@ -117,7 +134,7 @@ const mutation = new GraphQLObjectType({
                         values: {
                             new: { value: "Not Started" },
                             progress: { value: "In Progress" },
-                            Completed: { value: "Completed" },
+                            completed: { value: "Completed" },
                         },
                     }),
                     defaultValue: "Not Started",
